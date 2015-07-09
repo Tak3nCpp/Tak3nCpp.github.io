@@ -12,7 +12,8 @@
 marasy@foxmail.com
 
 zoutak3n@gmail.com
-&lt;!-- comment --&gt;">
+&lt;!-- comment --&gt;
+&amp;lt;%- partial(&#39;post/comment&#39;, {page: item">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -104,6 +105,14 @@ zoutak3n@gmail.com
 
 zoutak3n<span class="annotation">@gmail</span>.com
 </code></pre><!-- comment -->
+<pre><code><span class="xml"></span>&lt;%-<span class="ruby"> partial(<span class="string">'post/comment'</span>, {<span class="symbol">page:</span> item}) </span>%&gt;<span class="xml">
+
+<span class="tag">&lt;/<span class="title">div</span>&gt;</span> <span class="comment">&lt;!-- col-md-9/col-md-12 --&gt;</span>
+
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> (post) { </span>%&gt;<span class="xml">
+    </span>&lt;%-<span class="ruby"> partial(<span class="string">'post/meta'</span>, {<span class="symbol">item:</span> item}) </span>%&gt;<span class="xml">
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml"></span>
+</code></pre><p><!-- row --></p>
 	  
 	</div>
 
