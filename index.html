@@ -94,6 +94,36 @@
 	<!-- display as entry -->	
 		<h3 class="title">
 			<div class="date"> 2015-07-11 </div>
+			<div class="article-title"><a href="/2015/07/11/cf 486E LIS of Sequence/" >cf 486E LIS of Sequence</a></div>						
+		</h3>
+	
+
+
+			<div class="entry">
+  <div class="row">
+  
+	<div class="col-md-12">
+	  
+	
+	  <a class="btn btn-success" href="http://codeforces.com/problemset/problem/486/E">cf486E</a>
+<p>给一个数组，把数组里面的数分为3种类型。<br>1型：不存在于任何LIS中。<br>2型：存在于LIS中，但不是存在于全部的LIS中。<br>3型：存在于所有LIS中。<br>按照先后顺序输出所有数字的类型。</p>
+<p>1.求出以i为终点的LIS长度和以i为起点的LIS长度。<br>    方法1：dp做一遍最长上升子序列，再倒着做一遍最长下降子序列。<br>    方法2：维护最大值的树状数组从前往后从后往前做两遍。</p>
+<p>2.设最长上升子序列长度为len,则对于一个i，若长度小于Len+1，就是1型，长度等于len+1，并且以他为终点的LIS长度在2型中只出现一次就是3型。后面这一点很好理解，每个LIS都会出现一点使前面的长度为n,后面的长度为len-n,当所有2型点中只有一个点前面的长度为n时，那么这个点必然被所有LIS共有。<br>细节处理：字符串输出；LIS哨兵设置；等。</p>
+<p>由于树状数组的功能以及这里对LIS的要求，用树状数组不失为好方法。效率和dp相同。
+	
+	</div>
+	
+  
+</div>
+	<a type="button" href="/2015/07/11/cf 486E LIS of Sequence/#more" class="btn btn-default more">阅读此文</a>
+</div>
+
+		
+			
+	
+	<!-- display as entry -->	
+		<h3 class="title">
+			<div class="date"> 2015-07-11 </div>
 			<div class="article-title"><a href="/2015/07/11/poj 1679/" title="求最小生成树是否唯一。若唯一，输出值，否则输出 not unique。">POJ 1679 The Unique MST</a></div>						
 		</h3>
 	
@@ -232,6 +262,8 @@
 		<h4>分类</h4>
 		<ul class="tag_box inline list-unstyled">
 		
+			<li><a href="/categories/DP/">DP<span>1</span></a></li>
+		
 			<li><a href="/categories/MST/">MST<span>1</span></a></li>
 		
 			<li><a href="/categories/机智题/">机智题<span>1</span></a></li>
@@ -249,13 +281,21 @@
 		
 			<li><a href="/tags/hexo/">hexo<span>1</span></a></li>
 		
+			<li><a href="/tags/LIS/">LIS<span>1</span></a></li>
+		
+			<li><a href="/tags/树状数组/">树状数组<span>1</span></a></li>
+		
+			<li><a href="/tags/DP/">DP<span>1</span></a></li>
+		
+			<li><a href="/tags/codeforces/">codeforces<span>1</span></a></li>
+		
 			<li><a href="/tags/瞎逼逼/">瞎逼逼<span>2</span></a></li>
+		
+			<li><a href="/tags/机智题/">机智题<span>1</span></a></li>
 		
 			<li><a href="/tags/POJ/">POJ<span>2</span></a></li>
 		
 			<li><a href="/tags/MST/">MST<span>1</span></a></li>
-		
-			<li><a href="/tags/机智题/">机智题<span>1</span></a></li>
 		
 		 
 		</ul>
@@ -267,6 +307,10 @@
 <div class="widget">
   <h4>最新文章</h4>
   <ul class="entry list-unstyled">
+    
+      <li>
+        <a href="/2015/07/11/cf 486E LIS of Sequence/" ><i class="fa fa-file-o"></i>cf 486E LIS of Sequence...</a>
+      </li>
     
       <li>
         <a href="/2015/07/11/poj 1679/"  title="求最小生成树是否唯一。若唯一，输出值，否则输出 not unique。" ><i class="fa fa-file-o"></i>POJ 1679 The Unique MST...</a>

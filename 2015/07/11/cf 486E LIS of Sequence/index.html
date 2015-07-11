@@ -1,0 +1,243 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cf 486E LIS of Sequence | Tak3n&#39;s Blog</title>
+  <meta name="author" content="Tak3n">
+  
+  <meta name="description" content="cf486E
+给一个数组，把数组里面的数分为3种类型。1型：不存在于任何LIS中。2型：存在于LIS中，但不是存在于全部的LIS中。3型：存在于所有LIS中。按照先后顺序输出所有数字的类型。
+1.求出以i为终点的LIS长度和以i为起点的LIS长度。    方法1：dp做一遍最长上升子序列，再倒着做一遍最长下降子序列。    方法2：维护最大值的树状数组从前往后从后往前做两遍。
+2.设最长上升子序列长度为len,则对于一个i，若长度小于Len+1，就是1型，长度等于len+1，并且以他为终点的LIS长度在2型中只出现一次就是3型。后面这一点很好理解，每个LIS都会出现一点使前面的长度为n,后面的长度为len-n,当所有2型点中只有一个点前面的长度为n时，那么这个点必然被所有LIS共有。细节处理：字符串输出；LIS哨兵设置；等。
+由于树状数组的功能以及这里对LIS的要求，用树状数组不失为好方法。效率和dp相同。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="cf 486E LIS of Sequence"/>
+  <meta property="og:site_name" content="Tak3n&#39;s Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  
+  
+    <link href="/favicon.png" rel="icon">
+  
+  
+  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  <script src="/js/jquery-2.0.3.min.js"></script>
+
+  <!-- analytics -->
+  
+
+
+
+</head>
+
+ <body>  
+  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+	  <a class="navbar-brand" href="/">Tak3n&#39;s Blog</a>
+      <div class="collapse navbar-collapse nav-menu">
+		<ul class="nav navbar-nav">
+		  
+		  <li>
+			<a href="/archives" title="All the articles.">
+			  <i class="fa fa-archive"></i>Archives
+			</a>
+		  </li>
+		  
+		  <li>
+			<a href="/about" title="About me.">
+			  <i class="fa fa-user"></i>About
+			</a>
+		  </li>
+		  
+		</ul>
+      </div>
+    </div> <!-- container -->
+</nav>
+<div class="clearfix"></div>
+
+  <div class="container">
+  	<div class="content">
+    	 
+
+
+	
+		<div class="page-header">		
+			<h1> cf 486E LIS of Sequence</h1>
+		</div>		
+	
+
+
+
+<div class="row post">
+	<!-- cols -->
+	
+	<div class="col-md-9">
+	
+
+			
+
+	<!-- content -->
+	<div class="mypage">		
+	    <a class="btn btn-success" href="http://codeforces.com/problemset/problem/486/E" target="_blank" rel="external">cf486E</a>
+<p>给一个数组，把数组里面的数分为3种类型。<br>1型：不存在于任何LIS中。<br>2型：存在于LIS中，但不是存在于全部的LIS中。<br>3型：存在于所有LIS中。<br>按照先后顺序输出所有数字的类型。</p>
+<p>1.求出以i为终点的LIS长度和以i为起点的LIS长度。<br>    方法1：dp做一遍最长上升子序列，再倒着做一遍最长下降子序列。<br>    方法2：维护最大值的树状数组从前往后从后往前做两遍。</p>
+<p>2.设最长上升子序列长度为len,则对于一个i，若长度小于Len+1，就是1型，长度等于len+1，并且以他为终点的LIS长度在2型中只出现一次就是3型。后面这一点很好理解，每个LIS都会出现一点使前面的长度为n,后面的长度为len-n,当所有2型点中只有一个点前面的长度为n时，那么这个点必然被所有LIS共有。<br>细节处理：字符串输出；LIS哨兵设置；等。</p>
+<p>由于树状数组的功能以及这里对LIS的要求，用树状数组不失为好方法。效率和dp相同。<a id="more"></a><br>DP<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;string.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;cstring&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;algorithm&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;math.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;iomanip&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;queue&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;map&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mx 100010</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf 1000010</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts("--------")</span></span><br><span class="line"><span class="keyword">int</span> a[mx],lis[mx],lds[mx],posf[mx],posb[mx];</span><br><span class="line"><span class="keyword">int</span> unipos[mx];</span><br><span class="line"><span class="keyword">char</span> re[mx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> leni=<span class="number">0</span>,lend=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> mxpos;</span><br><span class="line">    lis[<span class="number">0</span>]=-<span class="number">1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,a+i);</span><br><span class="line">        <span class="keyword">if</span>(a[i]&gt;lis[leni])</span><br><span class="line">        &#123;</span><br><span class="line">            lis[++leni]=a[i];</span><br><span class="line">            posf[i]=leni;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]&lt;=lis[<span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            lis[<span class="number">1</span>]=a[i];</span><br><span class="line">            posf[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> l=<span class="number">1</span>,r=leni,m;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">            &#123;</span><br><span class="line">                m=(l+r)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(lis[m]&gt;a[i])r=m-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(lis[m]&lt;a[i])l=m+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span>&#123;l=m;<span class="keyword">break</span>;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            lis[l]=a[i];</span><br><span class="line">            posf[i]=l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    lds[<span class="number">0</span>]=inf;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i]&lt;lds[lend])</span><br><span class="line">        &#123;</span><br><span class="line">            lds[++lend]=a[i];</span><br><span class="line">            posb[i]=lend;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(a[i]&gt;=lds[<span class="number">1</span>])</span><br><span class="line">        &#123;</span><br><span class="line">            lds[<span class="number">1</span>]=a[i];</span><br><span class="line">            posb[i]=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">int</span> l=<span class="number">1</span>,r=lend,m;</span><br><span class="line">            <span class="keyword">while</span>(l&lt;=r)</span><br><span class="line">            &#123;</span><br><span class="line">                m=(l+r)/<span class="number">2</span>;</span><br><span class="line">                <span class="keyword">if</span>(lds[m]&lt;a[i])r=m-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(lds[m]&gt;a[i])l=m+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">else</span> &#123;l=m;<span class="keyword">break</span>;&#125;</span><br><span class="line">            &#125;</span><br><span class="line">            lds[l]=a[i];</span><br><span class="line">            posb[i]=l;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    mem(unipos,<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//printf("%d %d\n",leni,lend);</span></span><br><span class="line">    <span class="comment">//for(int i=0;i&lt;n;i++)</span></span><br><span class="line">    <span class="comment">//printf("%d %d\n",posf[i],posb[i]);</span></span><br><span class="line">   <span class="comment">// printf("%d\n",n);</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            re[i]=<span class="string">'1'</span>;</span><br><span class="line">            <span class="keyword">if</span>(posf[i]+posb[i]&gt;leni)</span><br><span class="line">                re[i]=<span class="string">'2'</span>,unipos[posf[i]]++;</span><br><span class="line">           <span class="comment">// printf("%d\n",unipos[posf[i]]);</span></span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(re[i]==<span class="string">'2'</span>&amp;&amp;unipos[posf[i]]==<span class="number">1</span>)re[i]++;</span><br><span class="line">    &#125;</span><br><span class="line">        re[n]=<span class="string">'\0'</span>;</span><br><span class="line">         <span class="built_in">puts</span>(re);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>树状数组<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;queue&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;cstring&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;set&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;algorithm&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts("--------")</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mx 100050</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="keyword">int</span> c[mx];</span><br><span class="line"><span class="keyword">int</span> f[mx],b[mx],sum[mx];</span><br><span class="line"><span class="keyword">int</span> sign[mx];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[mx];</span><br><span class="line"><span class="keyword">char</span> s[mx];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lb</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> x&amp;(-x);&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumf</span><span class="params">(<span class="keyword">int</span> x)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=max(ans,c[x]);</span><br><span class="line">        x-=lb(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumb</span><span class="params">(<span class="keyword">int</span> x)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x&lt;mx)</span><br><span class="line">    &#123;</span><br><span class="line">        ans=max(ans,c[x]);</span><br><span class="line">        x+=lb(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updatef</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> x)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;mx)</span><br><span class="line">    &#123;</span><br><span class="line">        c[i]=max(c[i],x);</span><br><span class="line">        i+=lb(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">updateb</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">int</span> x)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i&gt;<span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        c[i]=max(c[i],x);</span><br><span class="line">        i-=lb(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">   <span class="comment">// multiset&lt;int&gt;cnt;</span></span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,a+i);</span><br><span class="line">    <span class="keyword">int</span> len=<span class="number">0</span>;</span><br><span class="line">    mem(c,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        a[i]++;</span><br><span class="line">        <span class="comment">//updatef(a[i],1);</span></span><br><span class="line">        f[i]=sumf(a[i]-<span class="number">1</span>);</span><br><span class="line">        updatef(a[i],f[i]+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    mem(c,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=n-<span class="number">1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    &#123;</span><br><span class="line">        b[i]=sumb(a[i]+<span class="number">1</span>);</span><br><span class="line">        updateb(a[i],b[i]+<span class="number">1</span>);</span><br><span class="line">        sum[i]=b[i]+f[i];</span><br><span class="line">        len=max(sum[i],len);</span><br><span class="line">    &#125;</span><br><span class="line">   <span class="comment">/* printf("%d\n",len);</span><br><span class="line">    for(int i=0;i&lt;n;i++)</span><br><span class="line">        printf("%d %d\n",f[i],b[i]);*/</span></span><br><span class="line">        mem(sign,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">if</span>(sum[i]==len)sign[b[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        s[i]=<span class="string">'1'</span>;</span><br><span class="line">        <span class="keyword">if</span>(sum[i]==len)</span><br><span class="line">        &#123;   s[i]++;</span><br><span class="line">          <span class="keyword">if</span>(sign[b[i]]==<span class="number">1</span>)s[i]++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    s[n]=<span class="string">'\0'</span>;</span><br><span class="line">    <span class="built_in">puts</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用multiset会T.</p>
+	  
+	</div>
+
+	<div>
+  	<center>
+	<div class="pagination">
+<ul class="pagination">
+	 
+		
+          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
+        
+
+        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
+
+		
+		   <li class="next"><a href="/2015/07/11/poj 1679/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
+        
+	
+</ul>
+</div>
+
+    </center>
+	</div>
+	
+	<!-- comment -->
+	
+<section id="comment">
+ <div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'tak3ncpp';
+    
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</section>
+
+	
+	</div> <!-- col-md-9/col-md-12 -->
+	
+	
+		<div class="col-md-3"> 
+
+	<!-- date -->
+	
+	<div class="meta-widget">
+	<i class="fa fa-clock-o"></i>
+	2015-07-11 
+	</div>
+	
+
+	<!-- categories -->
+    
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
+    <ul id="categorys" class="tag_box list-unstyled collapse in">
+          
+  <li>
+    <li><a href="/categories/DP/">DP<span>1</span></a></li>
+  </li>
+
+    </ul>
+	</div>
+	
+
+	<!-- tags -->
+	
+	<div class="meta-widget">
+	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
+    <ul id="tags" class="tag_box list-unstyled collapse in">	  
+	    
+  <li><a href="/tags/DP/">DP<span>1</span></a></li> <li><a href="/tags/LIS/">LIS<span>1</span></a></li> <li><a href="/tags/codeforces/">codeforces<span>1</span></a></li> <li><a href="/tags/树状数组/">树状数组<span>1</span></a></li>
+    </ul>
+	</div>
+		
+
+	<!-- toc -->
+	<div class="meta-widget">
+	
+	</div>
+	
+    <hr>
+	
+</div><!-- col-md-3 -->
+
+	
+
+</div><!-- row -->
+
+	</div>
+  </div>
+  <div class="container-narrow">
+  <footer> <p>
+  &copy; 2015 Tak3n
+  
+      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
+</p> </footer>
+</div> <!-- container-narrow -->
+  
+<a id="gotop" href="#">   
+  <span>▲</span> 
+</a>
+
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+
+
+<script type="text/javascript">
+var disqus_shortname = 'tak3ncpp';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+</script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+</body>
+   </html>
