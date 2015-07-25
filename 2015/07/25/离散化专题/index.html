@@ -6,8 +6,7 @@
   <title>基础数据离散化 | Tak3n&#39;s Blog</title>
   <meta name="author" content="Tak3n">
   
-  <meta name="description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。这里分两种情况讨论，对于无重数组和有重数组。
-无重离散化无重离散化的局限性在于在排序的时候对于相同数值的数据会给出不同rank,导致离散化失效">
+  <meta name="description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -94,7 +93,7 @@
 
 	<!-- content -->
 	<div class="mypage">		
-	    <h2 id="大量数据离散化处理">大量数据离散化处理</h2><p>需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。<br>这里分两种情况讨论，对于无重数组和有重数组。</p>
+	    <h2 id="大量数据离散化处理">大量数据离散化处理</h2><p>需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。<a id="more"></a><br>这里分两种情况讨论，对于无重数组和有重数组。</p>
 <h3 id="无重离散化">无重离散化</h3><p>无重离散化的局限性在于在排序的时候对于相同数值的数据会给出不同rank,导致离散化失效，好处在于它写法简洁。产生的b数组对解题有有一定和帮助。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll a[maxn];</span><br><span class="line"><span class="keyword">int</span> b[maxn],r[maxn],n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[x]&lt;a[y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">discrete</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    sort(b,b+n,cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        r[b[i]]=i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="有重离散化">有重离散化</h3><p>有重离散化的时间效率不及无重离散化的地方在于lower_bound()的二分查找。空间效率的复杂度由于cpy数组的引入而增高。可以顺便建立个index数组来索引。</p>
