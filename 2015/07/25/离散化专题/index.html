@@ -1,99 +1,238 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>基础数据离散化 | Tak3n&#39;s Blog</title>
-  <meta name="author" content="Tak3n">
-  
-  <meta name="description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
-  
-  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-  <meta property="og:title" content="基础数据离散化"/>
-  <meta property="og:site_name" content="Tak3n&#39;s Blog"/>
-
+  <meta name="description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础数据离散化">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/07/25/离散化专题/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
+<meta property="og:updated_time" content="2015-07-26T03:16:03.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="基础数据离散化">
+<meta name="twitter:description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
   
-    <meta property="og:image" content="undefined"/>
-  
-
+    <link rel="alternative" href="/atom.xml" title="Tak3n&#39;s Blog" type="application/atom+xml">
   
   
-    <link href="/favicon.png" rel="icon">
+    <link rel="icon" href="/favicon.png">
   
-  
-  <link rel="stylesheet" href="/css/bootstrap.min.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/font-awesome.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/highlight.css" media="screen" type="text/css">
-  <link rel="stylesheet" href="/css/google-fonts.css" media="screen" type="text/css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-
-  <script src="/js/jquery-2.0.3.min.js"></script>
-
-  <!-- analytics -->
-  
-
-
-
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
 </head>
-
- <body>  
-  <nav id="main-nav" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-      <button type="button" class="navbar-header navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-		<span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-	  <a class="navbar-brand" href="/">Tak3n&#39;s Blog</a>
-      <div class="collapse navbar-collapse nav-menu">
-		<ul class="nav navbar-nav">
-		  
-		  <li>
-			<a href="/archives" title="All the articles.">
-			  <i class="fa fa-archive"></i>Archives
-			</a>
-		  </li>
-		  
-		  <li>
-			<a href="/about" title="About me.">
-			  <i class="fa fa-user"></i>About
-			</a>
-		  </li>
-		  
-		</ul>
-      </div>
-    </div> <!-- container -->
-</nav>
-<div class="clearfix"></div>
-
-  <div class="container">
-  	<div class="content">
-    	 
-
-
-	
-		<div class="page-header">		
-			<h1> 基础数据离散化</h1>
-		</div>		
-	
-
-
-
-<div class="row post">
-	<!-- cols -->
-	
-	<div class="col-md-9">
-	
-
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
 			
+			<img lazy-src="null" class="js-avatar">
+			
+		</a>
 
-	<!-- content -->
-	<div class="mypage">		
-	    <h2 id="大量数据离散化处理">大量数据离散化处理</h2><p>需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。<a id="more"></a><br>这里分两种情况讨论，对于无重数组和有重数组。</p>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tak3n</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						<div class="icon-wrap icon-link hide" data-idx="2">
+							<div class="loopback_l"></div>
+							<div class="loopback_r"></div>
+						</div>
+						
+						
+						<div class="icon-wrap icon-me hide" data-idx="3">
+							<div class="user"></div>
+							<div class="shoulder"></div>
+						</div>
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						<li>友情链接</li>
+						
+						
+						<li>关于我</li>
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">所有文章</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="/#" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+					        
+								<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/DP/" style="font-size: 10px;">DP</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/MST/" style="font-size: 10px;">MST</a> <a href="/tags/POJ/" style="font-size: 20px;">POJ</a> <a href="/tags/codeforces/" style="font-size: 10px;">codeforces</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/快速幂/" style="font-size: 10px;">快速幂</a> <a href="/tags/机智题/" style="font-size: 10px;">机智题</a> <a href="/tags/树状数组/" style="font-size: 10px;">树状数组</a> <a href="/tags/瞎逼逼/" style="font-size: 20px;">瞎逼逼</a> <a href="/tags/离散化/" style="font-size: 10px;">离散化</a>
+					</div>
+				</section>
+				
+				
+				
+				<section class="switch-part switch-part3">
+					<div id="js-friends">
+					
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">奥巴马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">卡卡的美丽传说</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">本泽马的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">吉格斯的博客</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">习大大大不同</a>
+			        
+			          <a target="_blank" class="main-nav-link switch-friends-link" href="http://localhost:4000/">托蒂的博客</a>
+			        
+			        </div>
+				</section>
+				
+
+				
+				
+				<section class="switch-part switch-part4">
+				
+					<div id="js-aboutme">我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…</div>
+				</section>
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Tak3n</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img lazy-src="null" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Tak3n</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">所有文章</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="/#" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="/#" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/#" title="rss">rss</a>
+			        
+						<a class="zhihu" target="_blank" href="/#" title="zhihu">zhihu</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-离散化专题" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/07/25/离散化专题/" class="article-date">
+  	<time datetime="2015-07-25T02:17:16.000Z" itemprop="datePublished">2015-07-25</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      基础数据离散化
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/快速幂/">快速幂</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/离散化/">离散化</a></li></ul>
+	</div>
+
+        
+	<div class="article-category tagcloud">
+	<a class="article-category-link" href="/categories/专题/">专题</a>
+	</div>
+
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="大量数据离散化处理">大量数据离散化处理</h2><p>需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。<a id="more"></a><br>这里分两种情况讨论，对于无重数组和有重数组。</p>
 <h3 id="无重离散化">无重离散化</h3><p>无重离散化的局限性在于在排序的时候对于相同数值的数据会给出不同rank,导致离散化失效，好处在于它写法简洁。产生的b数组对解题有有一定和帮助。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll a[maxn];</span><br><span class="line"><span class="keyword">int</span> b[maxn],r[maxn],n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a[x]&lt;a[y];</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">discrete</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    sort(b,b+n,cmp);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        r[b[i]]=i;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="有重离散化">有重离散化</h3><p>有重离散化的时间效率不及无重离散化的地方在于lower_bound()的二分查找。空间效率的复杂度由于cpy数组的引入而增高。可以顺便建立个index数组来索引。</p>
@@ -111,152 +250,130 @@
 <p>快速乘法+快速幂</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">ll qmult(ll a,ll b)<span class="comment">//ORZ</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a*b-(ll)(a/(long double)<span class="keyword">M</span>*b+1e-3)*<span class="keyword">M</span>+<span class="keyword">M</span>)%<span class="keyword">M</span>;</span><br><span class="line">&#125;</span><br><span class="line">ll qmulti(ll a,ll b)</span><br><span class="line">&#123;</span><br><span class="line">    a%=<span class="keyword">M</span>;</span><br><span class="line">    ll res=0;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;1)res=(res+a)%<span class="keyword">M</span>;</span><br><span class="line">        b&gt;&gt;=1;</span><br><span class="line">        a=(a+a)%<span class="keyword">M</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">ll qpow(ll a,ll b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(b&lt;0)<span class="keyword">return</span> 0;</span><br><span class="line">    ll <span class="keyword">ret</span>=1;</span><br><span class="line">    a%=<span class="keyword">M</span>;</span><br><span class="line">    <span class="keyword">for</span>(;b;b&gt;&gt;=1,a=qmulti(a,a)%<span class="keyword">M</span>)</span><br><span class="line">        <span class="keyword">if</span>(b&amp;1)</span><br><span class="line">        <span class="keyword">ret</span>=qmulti(<span class="keyword">ret</span>,a)%<span class="keyword">M</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">ret</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>快速乘法是个很着急的玩意儿，慎用。使用于处理mod长整型变量的场合。</p>
-<h3 id="多重背包和状态DP的离散化优化">多重背包和状态DP的离散化优化</h3><p>我并不想多说什么，因为我不会。</p>
 <p><strong>ps:啊，为了督促我自己的学习，给出下几期的预告。</strong></p>
 <p>HDU 1754 线段树和树状数组的比较。</p>
 <p>离散化补完。</p>
 <p>组合数学之母函数VS多重背包（附背包理解）</p>
 <p>数论模板详解。</p>
 <p>矩阵/sg函数/卡特兰数 选解。</p>
-	  
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/07/11/cf 486E LIS of Sequence/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">cf 486E</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
-
-	<div>
-  	<center>
-	<div class="pagination">
-<ul class="pagination">
-	 
-		
-          <li class="prev disabled"><a><i class="fa fa-arrow-circle-o-left"></i>上一页</a></li>
-        
-
-        <li><a href="/archives"><i class="fa fa-archive"></i>Archive</a></li>
-
-		
-		   <li class="next"><a href="/2015/07/11/cf 486E LIS of Sequence/" class="alignright next">下一页<i class="fa fa-arrow-circle-o-right"></i></a></li>         
-        
-	
-</ul>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
 </div>
 
-    </center>
-	</div>
-	
-	<!-- comment -->
-	
-<section id="comment">
- <div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES * * */
-    var disqus_shortname = 'tak3ncpp';
-    
+
+
+
+
+
+
+<section id="comments">
+  <div id="disqus_thread"></div>
+    <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'tak3ncpp'; // required: replace example with your forum shortname
+
     /* * * DON'T EDIT BELOW THIS LINE * * */
     (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </section>
 
-	
-	</div> <!-- col-md-9/col-md-12 -->
-	
-	
-		<div class="col-md-3"> 
-
-	<!-- date -->
-	
-	<div class="meta-widget">
-	<i class="fa fa-clock-o"></i>
-	2015-07-25 
-	</div>
-	
-
-	<!-- categories -->
-    
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#categorys"><i class="fa fa-folder"></i></a>	
-    <ul id="categorys" class="tag_box list-unstyled collapse in">
-          
-  <li>
-    <li><a href="/categories/专题/">专题<span>1</span></a></li>
-  </li>
-
-    </ul>
-	</div>
-	
-
-	<!-- tags -->
-	
-	<div class="meta-widget">
-	<a data-toggle="collapse" data-target="#tags"><i class="fa fa-tags"></i></a>		  
-    <ul id="tags" class="tag_box list-unstyled collapse in">	  
-	    
-  <li><a href="/tags/快速幂/">快速幂<span>1</span></a></li> <li><a href="/tags/离散化/">离散化<span>1</span></a></li>
-    </ul>
-	</div>
-		
-
-	<!-- toc -->
-	<div class="meta-widget">
-	
-	   <a data-toggle="collapse" data-target="#toc"><i class="fa fa-bars"></i></a>
-	   <div id="toc" class="toc collapse in">
-			<ol class="toc-article"><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#大量数据离散化处理"><span class="toc-article-text">大量数据离散化处理</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#无重离散化"><span class="toc-article-text">无重离散化</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#有重离散化"><span class="toc-article-text">有重离散化</span></a></li></ol></li><li class="toc-article-item toc-article-level-2"><a class="toc-article-link" href="#单个大值数据离散化处理"><span class="toc-article-text">单个大值数据离散化处理</span></a><ol class="toc-article-child"><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#树状数组"><span class="toc-article-text">树状数组</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#快速运算法"><span class="toc-article-text">快速运算法</span></a></li><li class="toc-article-item toc-article-level-3"><a class="toc-article-link" href="#多重背包和状态DP的离散化优化"><span class="toc-article-text">多重背包和状态DP的离散化优化</span></a></li></ol></li></ol>
-		</div>
-	
-	</div>
-	
-    <hr>
-	
-</div><!-- col-md-3 -->
-
-	
-
-</div><!-- row -->
-
-	</div>
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Tak3n
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
   </div>
-  <div class="container-narrow">
-  <footer> <p>
-  &copy; 2015 Tak3n
-  
-      with help from <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="http://getbootstrap.com/" target="_blank">Twitter Bootstrap</a>. Theme by <a href="http://github.com/wzpan/hexo-theme-freemind/">Freemind</a>.    
-</p> </footer>
-</div> <!-- container-narrow -->
-  
-<a id="gotop" href="#">   
-  <span>▲</span> 
-</a>
-
-<script src="/js/jquery.imagesloaded.min.js"></script>
-<script src="/js/gallery.js"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="/js/main.js"></script>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
 
 
-<script type="text/javascript">
-var disqus_shortname = 'tak3ncpp';
-(function(){
-  var dsq = document.createElement('script');
-  dsq.type = 'text/javascript';
-  dsq.async = true;
-  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-}());
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-(function($){
-  $('.fancybox').fancybox();
-})(jQuery);
-</script>
-
-
+  </div>
 </body>
-   </html>
+</html>
