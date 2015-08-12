@@ -3,18 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>POJ 2719 - Tak3n&#39;s Blog</title>
+  <title>Tak3n 2719 - Tak3n&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="给一些数，这些数遇到4就跳过。比如5表示的值是4.问原数是多少。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="POJ 2719">
-<meta property="og:url" content="http://tak3ncpp.github.io/2015/07/11/poj 2719/index.html">
+<meta property="og:title" content="Tak3n 2719">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/07/11/poj 2719 - 副本/index.html">
 <meta property="og:site_name" content="Tak3n's Blog">
 <meta property="og:description" content="给一些数，这些数遇到4就跳过。比如5表示的值是4.问原数是多少。">
-<meta property="og:image" content="http://tak3ncpp.github.io/img/12412846.jpg">
-<meta property="og:updated_time" content="2015-08-12T08:14:17.091Z">
+<meta property="og:updated_time" content="2015-08-12T10:59:02.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="POJ 2719">
+<meta name="twitter:title" content="Tak3n 2719">
 <meta name="twitter:description" content="给一些数，这些数遇到4就跳过。比如5表示的值是4.问原数是多少。">
   
   
@@ -55,7 +54,7 @@
     </div>
   </div>
 </header>
-    <section id="main" class="outer"><article id="post-poj 2719" class="article article-type-post" itemscope itemprop="blogPost">
+    <section id="main" class="outer"><article id="post-poj 2719 - 副本" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -63,14 +62,14 @@
         
   
     <h1 class="article-title" itemprop="name">
-      POJ 2719
+      Tak3n 2719
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2015/07/11/poj 2719/" class="article-date">
+      <a href="/2015/07/11/poj 2719 - 副本/" class="article-date">
   <time datetime="2015-07-11T02:17:16.000Z" itemprop="datePublished">2015-07-11</time>
 </a>
       
@@ -80,15 +79,13 @@
 
       
         <div class="article-comment-link-wrap">
-          <a href="http://tak3ncpp.github.io/2015/07/11/poj 2719/#disqus_thread" class="article-comment-link">评论</a>
+          <a href="http://tak3ncpp.github.io/2015/07/11/poj 2719 - 副本/#disqus_thread" class="article-comment-link">评论</a>
         </div>
       
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/img/12412846.jpg" alt=""><a id="more"></a><br>无意义配图。</p>
-<a class="btn btn-primary" href="http://poj.org/problem?id=2719" target="_blank" rel="external">poj2719</a>
-<p>换成9进制。<br>遇4跳过换成遇9跳过。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdio.h&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;cmath&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;iostream&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;cstring&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;stdlib.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> n[<span class="number">50</span>];</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%s"</span>,n)&amp;&amp;n[<span class="number">0</span>]!=<span class="string">'0'</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s: "</span>,n);</span><br><span class="line">        <span class="keyword">char</span> *temp;</span><br><span class="line">        <span class="keyword">int</span> len=<span class="built_in">strlen</span>(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">            <span class="keyword">if</span>(n[i]&gt;=<span class="string">'4'</span>)n[i]--;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> a=strtol(n,&amp;temp,<span class="number">9</span>);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);</span><br><span class="line">        getchar();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+        <h1 id="Tak3n">Tak3n</h1><h2 id="Tak3n-1">Tak3n</h2><h3 id="Tak3n-2">Tak3n</h3><h4 id="Tak3n-3">Tak3n</h4><p>Tak3n</p>
 
       
     </div>
@@ -104,17 +101,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/07/11/poj 2719 - 副本/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/07/25/离散化专题/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-title"><span>&lt;</span>&nbsp;
         
-          Tak3n 2719
+          基础数据离散化
         
       </div>
     </a>
   
   
-    <a href="/2015/07/08/第一篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">瞎扯&nbsp;<span>&gt;</span></div>
+    <a href="/2015/07/11/poj 2719/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">POJ 2719&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -142,7 +139,7 @@
 <script>
   var disqus_shortname = 'tak3ncpp';
   
-  var disqus_url = 'http://tak3ncpp.github.io/2015/07/11/poj 2719/';
+  var disqus_url = 'http://tak3ncpp.github.io/2015/07/11/poj 2719 - 副本/';
   
   (function(){
     var dsq = document.createElement('script');
