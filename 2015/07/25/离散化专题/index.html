@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://tak3ncpp.github.io/2015/07/25/离散化专题/index.html">
 <meta property="og:site_name" content="Tak3n's Blog">
 <meta property="og:description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
-<meta property="og:updated_time" content="2015-07-26T03:16:03.627Z">
+<meta property="og:updated_time" content="2015-08-12T11:29:17.556Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="基础数据离散化">
 <meta name="twitter:description" content="大量数据离散化处理需要注意的是，这里的离散化指的是把无限空间中有限的个体映射到有限的空间中去，以此提高算法的时空效率。当然在程序实现上，个体也不可能是无限的。">
@@ -103,12 +103,7 @@
 <p>快速乘法+快速幂</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">ll qmult(ll a,ll b)<span class="comment">//ORZ</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> (a*b-(ll)(a/(long double)<span class="keyword">M</span>*b+1e-3)*<span class="keyword">M</span>+<span class="keyword">M</span>)%<span class="keyword">M</span>;</span><br><span class="line">&#125;</span><br><span class="line">ll qmulti(ll a,ll b)</span><br><span class="line">&#123;</span><br><span class="line">    a%=<span class="keyword">M</span>;</span><br><span class="line">    ll res=0;</span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;1)res=(res+a)%<span class="keyword">M</span>;</span><br><span class="line">        b&gt;&gt;=1;</span><br><span class="line">        a=(a+a)%<span class="keyword">M</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line">ll qpow(ll a,ll b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span>(b&lt;0)<span class="keyword">return</span> 0;</span><br><span class="line">    ll <span class="keyword">ret</span>=1;</span><br><span class="line">    a%=<span class="keyword">M</span>;</span><br><span class="line">    <span class="keyword">for</span>(;b;b&gt;&gt;=1,a=qmulti(a,a)%<span class="keyword">M</span>)</span><br><span class="line">        <span class="keyword">if</span>(b&amp;1)</span><br><span class="line">        <span class="keyword">ret</span>=qmulti(<span class="keyword">ret</span>,a)%<span class="keyword">M</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">ret</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>快速乘法是个很着急的玩意儿，慎用。使用于处理mod长整型变量的场合。</p>
-<p><strong>ps:啊，为了督促我自己的学习，给出下几期的预告。</strong></p>
-<p>HDU 1754 线段树和树状数组的比较。</p>
-<p>离散化补完。</p>
-<p>组合数学之母函数VS多重背包（附背包理解）</p>
-<p>数论模板详解。</p>
-<p>矩阵/sg函数/卡特兰数 选解。</p>
+<p><em>EOF</em></p>
 
       
     </div>
@@ -133,8 +128,8 @@
     </a>
   
   
-    <a href="/2015/07/11/poj 2719 - 副本/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Tak3n 2719&nbsp;<span>&gt;</span></div>
+    <a href="/2015/07/11/poj 2719/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">POJ 2719&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
