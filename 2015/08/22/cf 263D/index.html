@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>cf 263D - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="����̫�ӡ���������ͼ������ͼ������һ���ȴ���k�Ļ���">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cf 263D">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/08/22/cf 263D/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="����̫�ӡ���������ͼ������ͼ������һ���ȴ���k�Ļ���">
+<meta property="og:updated_time" content="2015-08-28T09:39:45.645Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cf 263D">
+<meta name="twitter:description" content="����̫�ӡ���������ͼ������ͼ������һ���ȴ���k�Ļ���">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-cf 263D" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      cf 263D
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/08/22/cf 263D/" class="article-date">
+  <time datetime="2015-08-22T03:30:34.000Z" itemprop="datePublished">2015-08-22</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/08/22/cf 263D/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>����̫�ӡ���������ͼ������ͼ������һ���ȴ���k�Ļ���<a id="more"></a><br>������dfs��ö��ÿ����Ϊ�󶥵Ļ��Σ�dep����kʱ������</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span>&lt;bits/stdc++.h&gt;</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts("-------")</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NV 300005</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NE 600005</span></span><br><span class="line"><span class="keyword">struct</span> edge&#123;<span class="keyword">int</span> v,next;&#125;e[NE];</span><br><span class="line"><span class="keyword">int</span> pre[NV],vis[NV];</span><br><span class="line"><span class="keyword">int</span> ecnt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    mem(pre,-<span class="number">1</span>);</span><br><span class="line">    ecnt=<span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">adde</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    e[ecnt].v=v;</span><br><span class="line">    e[ecnt].next=pre[u];</span><br><span class="line">    pre[u]=ecnt++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> fl;</span><br><span class="line"><span class="keyword">int</span> ans[NE];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> dep)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dep);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=dep;i++)</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d%c"</span>,ans[i],<span class="string">" \n"</span>[i==dep]);</span><br><span class="line">    fl=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> k,now;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> dep)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(fl)<span class="keyword">return</span>;</span><br><span class="line">    ans[dep]=u;</span><br><span class="line">    vis[u]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=pre[u];~i;i=e[i].next)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> v=e[i].v;</span><br><span class="line">        <span class="keyword">if</span>(!vis[v]&amp;&amp;v&gt;now)dfs(v,dep+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(v==now&amp;&amp;dep&gt;k)print(dep);</span><br><span class="line">        <span class="keyword">if</span>(fl)<span class="keyword">return</span> ;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;m,&amp;k);</span><br><span class="line">    init();</span><br><span class="line">    <span class="keyword">while</span>(m--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> u,v;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">        adde(u,v);</span><br><span class="line">        adde(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    fl=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        mem(vis,<span class="number">0</span>);</span><br><span class="line">        now=i;</span><br><span class="line">        dfs(i,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span>(fl)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dfs/">dfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gragh/">gragh</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/08/23/rqnoj 675/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          rqnoj 675
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/12/暑期集训云云/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">喜迎暑假第X场&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/08/22/cf 263D/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
