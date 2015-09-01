@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://tak3ncpp.github.io/2015/08/19/cf 479E/index.html">
 <meta property="og:site_name" content="Tak3n's Blog">
 <meta property="og:description" content="有一栋高N层的楼，这栋楼里有个秘密实验室在B层，所以每次他移动的时候就有了一个限制，x为当前所在层，y为目标层，|x - y| &amp;lt; |x - b|。问说移动K次后，有多少不同的路径。">
-<meta property="og:updated_time" content="2015-08-31T13:33:02.714Z">
+<meta property="og:updated_time" content="2015-09-01T10:08:43.034Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cf 479E">
 <meta name="twitter:description" content="有一栋高N层的楼，这栋楼里有个秘密实验室在B层，所以每次他移动的时候就有了一个限制，x为当前所在层，y为目标层，|x - y| &amp;lt; |x - b|。问说移动K次后，有多少不同的路径。">
@@ -70,7 +70,7 @@
     
     <div class="article-meta">
       <a href="/2015/08/19/cf 479E/" class="article-date">
-  <time datetime="2015-08-19T06:30:34.000Z" itemprop="datePublished">2015-08-19</time>
+  <time datetime="2015-08-19T07:30:34.000Z" itemprop="datePublished">2015-08-19</time>
 </a>
       
   <div class="article-category">
@@ -86,7 +86,9 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>有一栋高N层的楼，这栋楼里有个秘密实验室在B层，所以每次他移动的时候就有了一个限制，x为当前所在层，y为目标层，|x - y| &lt; |x - b|。问说移动K次后，有多少不同的路径。  <a id="more"></a> </p>
-<p>经过分析可得出他移动的层数一定在b的同侧，dp[i][j]表示第i次坐电梯，距离b最小值为j的路径总数，那么可以得到状态转移方程：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">```&#10;``` if(j&#62;2)dp[i][j]+=dp[i-1][(j+2)/2]-dp[i-1][j];//&#24403;j&#22823;&#20110;2&#26102;&#65292;&#36824;&#21487;&#30001;&#23567;&#20110;2&#30340;&#36317;&#31163;&#22823;&#20110;1/2 j&#23567;&#20110; j&#30340;&#20301;&#32622;&#24471;&#21040;&#12290;&#10;```</span><br></pre></td></tr></table></figure></p>
+<p>经过分析可得出他移动的层数一定在b的同侧，dp[i][j]表示第i次坐电梯，距离b最小值为j的路径总数，那么可以得到状态转移方程：  </p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]=dp[<span class="link_label">i</span>][<span class="link_reference">j+1</span>]+dp[<span class="link_label">i-1</span>][<span class="link_reference">j+1</span>];//距离为j的可由距离大于j的所有位置得到。</span><br></pre></td></tr></table></figure>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> if(j&gt;2)dp[<span class="link_label">i</span>][<span class="link_reference">j</span>]+=dp[<span class="link_label">i-1</span>][<span class="link_reference">(j+2)/2</span>]-dp[<span class="link_label">i-1</span>][<span class="link_reference">j</span>];//当j大于2时，还可由小于2的距离大于1/2 j小于 j的位置得到。</span><br><span class="line"><span class="code">```</span></span><br></pre></td></tr></table></figure>
 <p>long long dp[5003][5003];<br>int main()<br>{<br>    int n,a,b,k;<br>    scanf(“%d%d%d%d”,&amp;n,&amp;a,&amp;b,&amp;k);<br>    if(a&gt;b)<br>    {<br>        b=n-b+1;<br>        a=n-a+1;<br>    }<br>            dp[0][b-a]=1;<br>        for(int i=b-a-1;i&gt;=1;i—)<br>            dp[0][i]=dp[0][i+1];<br>    for(int i=1;i&lt;=k;i++)<br>        for(int j=b-1;j&gt;=1;j—)<br>    {<br>        dp[i][j]=dp[i][j+1]+dp[i-1][j+1];<br>        if(j&gt;2)dp[i][j]+=dp[i-1][(j+2)/2]-dp[i-1][j];<br>        dp[i][j]=(dp[i][j]%mod+mod)%mod;<br>    }<br>    printf(“%d\n”,dp[k][1]);<br>}<br>```<br><em>EOF</em></p>
 
       
