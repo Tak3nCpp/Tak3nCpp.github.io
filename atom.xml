@@ -232,7 +232,7 @@
     <link href="http://tak3ncpp.github.io/2015/08/19/cf%20479E/"/>
     <id>http://tak3ncpp.github.io/2015/08/19/cf 479E/</id>
     <published>2015-08-19T07:30:34.000Z</published>
-    <updated>2015-09-01T10:13:20.983Z</updated>
+    <updated>2015-09-01T10:15:32.005Z</updated>
     <content type="html"><![CDATA[<p>有一栋高N层的楼，这栋楼里有个秘密实验室在B层，所以每次他移动的时候就有了一个限制，x为当前所在层，y为目标层，|x - y| &lt; |x - b|。问说移动K次后，有多少不同的路径。  <a id="more"></a> </p>
 <p>经过分析可得出他移动的层数一定在b的同侧，dp[i][j]表示第i次坐电梯，距离b最小值为j的路径总数，那么可以得到状态转移方程：  </p>
 <p>dp[i][j]=dp[i][j+1]+dp[i-1][j+1];//距离为j的可由距离大于j的所有位置得到。<br> if(j&gt;2)dp[i][j]+=dp[i-1][(j+2)/2]-dp[i-1][j];//当j大于2时，还可由小于2的距离大于1/2 j小于 j的位置得到。</p>
