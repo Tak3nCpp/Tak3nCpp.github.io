@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>poj 2778 - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http://poj.org/problem?id=2778    题目大意是，检测所有可能的n位DNA串有多少个DNA串中不含有指定的病毒片段。合法的DNA只能由ACTG四个字符构成。题目将给出10个以内的病毒片段，每个片段长度不超过10。数据规模n&amp;lt;=2 000 000 000。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="poj 2778">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/10/02/matrix10/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="http://poj.org/problem?id=2778    题目大意是，检测所有可能的n位DNA串有多少个DNA串中不含有指定的病毒片段。合法的DNA只能由ACTG四个字符构成。题目将给出10个以内的病毒片段，每个片段长度不超过10。数据规模n&amp;lt;=2 000 000 000。">
+<meta property="og:updated_time" content="2015-10-02T04:16:07.445Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="poj 2778">
+<meta name="twitter:description" content="http://poj.org/problem?id=2778    题目大意是，检测所有可能的n位DNA串有多少个DNA串中不含有指定的病毒片段。合法的DNA只能由ACTG四个字符构成。题目将给出10个以内的病毒片段，每个片段长度不超过10。数据规模n&amp;lt;=2 000 000 000。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-matrix10" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      poj 2778
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/10/02/matrix10/" class="article-date">
+  <time datetime="2015-10-01T23:49:34.000Z" itemprop="datePublished">2015-10-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/10/02/matrix10/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://poj.org/problem?id=2778" target="_blank" rel="external">http://poj.org/problem?id=2778</a><br>    题目大意是，检测所有可能的n位DNA串有多少个DNA串中不含有指定的病毒片段。合法的DNA只能由ACTG四个字符构成。题目将给出10个以内的病毒片段，每个片段长度不超过10。数据规模n&lt;=2 000 000 000。<a id="more"></a></p>
+<p>这道题真的让我很痛苦，debug3天未果。<br>AC自动机加矩阵乘法。<br>核心思想是，一个长度为n的字符串的匹配相当于在一个构造好的字典树上从root开始走n步。所以所有的走法也都是在这个字典树上进行的。关键就在于不能走到ed[i]的节点的判断，与ed[i]等价的节点也属于不能走到的节点，所以如果当前节点的fail节点ed为1时，当前节点ed也为1.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf <span class="number">0x3f3f3f3f</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts(<span class="string">"-----"</span>)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> maxn <span class="number">100</span>+<span class="number">5</span></span></span><br><span class="line"><span class="keyword">int</span> siz;</span><br><span class="line"><span class="keyword">int</span> mod=<span class="number">100000</span>;</span><br><span class="line"><span class="keyword">struct</span> matrix </span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> a[maxn][maxn];</span><br><span class="line">	matrix <span class="keyword">operator</span>*(<span class="keyword">const</span> matrix &amp;t)<span class="keyword">const</span></span><br><span class="line">	&#123;</span><br><span class="line">		matrix res;</span><br><span class="line">		mem(res.a,<span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;siz;j++)</span><br><span class="line">				<span class="keyword">if</span>(a[i][j])</span><br><span class="line">					<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;siz;k++)</span><br><span class="line">						res.a[i][k]=(res.a[i][k]+a[i][j]*t.a[j][k])%mod;</span><br><span class="line">		<span class="keyword">return</span> res;</span><br><span class="line">	&#125;</span><br><span class="line">	matrix <span class="keyword">operator</span>*=(<span class="keyword">const</span> matrix &amp;t)</span><br><span class="line">	&#123;</span><br><span class="line">		*<span class="keyword">this</span>=t* *<span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;a;</span><br><span class="line"><span class="keyword">struct</span> trie</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">int</span> next[maxn][<span class="number">4</span>],fail[maxn],ed[maxn];</span><br><span class="line">	<span class="built_in">map</span>&lt;<span class="keyword">char</span>,<span class="keyword">int</span>&gt;mp;</span><br><span class="line">	<span class="keyword">int</span> root,L;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">newnode</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		mem(next[L],-<span class="number">1</span>);</span><br><span class="line">		ed[L]=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">return</span> L++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		L=<span class="number">0</span>;</span><br><span class="line">		root=newnode();</span><br><span class="line">		mem(a.a,<span class="number">0</span>);</span><br><span class="line">		mp[<span class="string">'A'</span>]=<span class="number">0</span>,mp[<span class="string">'C'</span>]=<span class="number">1</span>,mp[<span class="string">'G'</span>]=<span class="number">2</span>,mp[<span class="string">'T'</span>]=<span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> s[])</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="keyword">int</span> len=<span class="built_in">strlen</span>(s);</span><br><span class="line">		<span class="keyword">int</span> now=root;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> &amp;t=next[now][mp[s[i]]];</span><br><span class="line">			<span class="keyword">if</span>(t==-<span class="number">1</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				t=newnode();</span><br><span class="line">			&#125;</span><br><span class="line">			now=t;</span><br><span class="line">		&#125;</span><br><span class="line">		ed[now]=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span><br><span class="line">	</span>&#123;</span><br><span class="line">		<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;q;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">			<span class="keyword">if</span>(next[root][i]==-<span class="number">1</span>)</span><br><span class="line">				next[root][i]=root;</span><br><span class="line">			<span class="keyword">else</span> </span><br><span class="line">			&#123;</span><br><span class="line">				fail[next[root][i]]=root;</span><br><span class="line">				q.push(next[root][i]);</span><br><span class="line">			&#125;</span><br><span class="line">		<span class="keyword">while</span>(!q.empty())</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> now=q.front();</span><br><span class="line">			q.pop();</span><br><span class="line">			<span class="keyword">if</span>(ed[fail[now]])</span><br><span class="line">				ed[now]=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++)</span><br><span class="line">				<span class="keyword">if</span>(next[now][i]==-<span class="number">1</span>)</span><br><span class="line">					next[now][i]=next[fail[now]][i];</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					fail[next[now][i]]=next[fail[now]][i];</span><br><span class="line">					q.push(next[now][i]);</span><br><span class="line">				&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L;i++)</span><br><span class="line">		&#123;</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">4</span>;j++)</span><br><span class="line">					<span class="keyword">if</span>(ed[next[i][j]]==<span class="number">0</span>)</span><br><span class="line">							a.a[i][next[i][j]]++;</span><br><span class="line">		&#125;</span><br><span class="line">		siz=L;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line">trie ac;</span><br><span class="line"><span class="function">matrix <span class="title">qmod</span><span class="params">(<span class="keyword">int</span> k)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	matrix res;</span><br><span class="line">	mem(res.a,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">		res.a[i][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(k)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(k&amp;<span class="number">1</span>)</span><br><span class="line">			res*=a;</span><br><span class="line">		a*=a;</span><br><span class="line">		k&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(matrix t)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;siz;j++)</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d "</span>,t.a[i][j]);</span><br><span class="line">		<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">20</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> m,n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;m,&amp;n);</span><br><span class="line">	matrix t;</span><br><span class="line">	ac.init();</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">		ac.insert(s);</span><br><span class="line">	&#125;</span><br><span class="line">	ac.build();</span><br><span class="line">	t=qmod(n);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">	&#123;</span><br><span class="line">			ans+=t.a[<span class="number">0</span>][i];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,ans%mod);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AC自动机/">AC自动机</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matrix/">matrix</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/02/matrix十题/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          矩阵十题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/02/matrix9.1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">poj 3420&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/10/02/matrix10/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

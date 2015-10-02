@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nyoj 298 - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="http://acm.nyist.net/JudgeOnline/problem.php?pid=298给定n个点，m个操作，构造O(m+n)的算法输出m个操作后各点的位置。操作有平移、缩放、翻转和旋转。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nyoj 298">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/10/02/matrix1/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="http://acm.nyist.net/JudgeOnline/problem.php?pid=298给定n个点，m个操作，构造O(m+n)的算法输出m个操作后各点的位置。操作有平移、缩放、翻转和旋转。">
+<meta property="og:image" content="http://tak3ncpp.github.io/img/matrix1.png">
+<meta property="og:updated_time" content="2015-10-02T03:25:06.629Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="nyoj 298">
+<meta name="twitter:description" content="http://acm.nyist.net/JudgeOnline/problem.php?pid=298给定n个点，m个操作，构造O(m+n)的算法输出m个操作后各点的位置。操作有平移、缩放、翻转和旋转。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-matrix1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nyoj 298
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/10/02/matrix1/" class="article-date">
+  <time datetime="2015-10-01T23:30:34.000Z" itemprop="datePublished">2015-10-02</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/10/02/matrix1/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="http://acm.nyist.net/JudgeOnline/problem.php?pid=298" target="_blank" rel="external">http://acm.nyist.net/JudgeOnline/problem.php?pid=298</a><br>给定n个点，m个操作，构造O(m+n)的算法输出m个操作后各点的位置。操作有平移、缩放、翻转和旋转。<a id="more"></a><br>这里的操作是对所有点同时进行的。其中翻转是以坐标轴为对称轴进行翻转（两种情况），旋转则以原点为中心。如果对每个点分别进行模拟，那么m个操作总共耗 时O(mn)。利用矩阵乘法可以在O(m)的时间里把所有操作合并为一个矩阵，然后每个点与该矩阵相乘即可直接得出最终该点的位置，总共耗时 O(m+n)。假设初始时某个点的坐标为x和y，下面5个矩阵可以分别对其进行平移、旋转、翻转和旋转操作。预先把所有m个操作所对应的矩阵全部乘起来， 再乘以(x,y,1)，即可一步得出最终点的位置。<br><img src="/img/matrix1.png" alt=""></p>
+<p>绕原点旋转的公式可由两点的叉积和点积方程联立求解。<br>虽然样例没跑过（0.0输出-0.0），还是抱着必A的决心交了，AC了。。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf <span class="number">0x3f3f3f3f</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> siz <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> MAXN <span class="number">10000</span>+<span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> pi acos(-<span class="number">1</span>)</span></span><br><span class="line"><span class="keyword">struct</span> matrix </span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">double</span> a[siz][siz];</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function">matrix <span class="title">multi</span><span class="params">(matrix &amp;x,matrix &amp;y)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	matrix res;</span><br><span class="line">	mem(res.a,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;siz;j++)</span><br><span class="line">			<span class="keyword">if</span>(x.a[i][j])</span><br><span class="line">				<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;siz;k++)</span><br><span class="line">					res.a[i][k]+=x.a[i][j]*y.a[j][k];</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">double</span> x[MAXN],y[MAXN];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;x[i],&amp;y[i]);</span><br><span class="line">	matrix ans;</span><br><span class="line">	mem(ans.a,<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;siz;i++)</span><br><span class="line">		ans.a[i][i]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(m--)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">char</span> s[<span class="number">5</span>];</span><br><span class="line">		<span class="keyword">double</span> a,b;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">		matrix k;</span><br><span class="line">		mem(k.a,<span class="number">0</span>);	</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)</span><br><span class="line">			k.a[i][i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">switch</span>(s[<span class="number">0</span>])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'M'</span>:</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lf%lf"</span>,&amp;a,&amp;b);</span><br><span class="line">				k.a[<span class="number">0</span>][<span class="number">2</span>]=a;</span><br><span class="line">				k.a[<span class="number">1</span>][<span class="number">2</span>]=b;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'X'</span>:</span><br><span class="line">				k.a[<span class="number">1</span>][<span class="number">1</span>]=-<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'Y'</span>:</span><br><span class="line">				k.a[<span class="number">0</span>][<span class="number">0</span>]=-<span class="number">1</span>;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'S'</span>:</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;a);</span><br><span class="line">				k.a[<span class="number">0</span>][<span class="number">0</span>]=k.a[<span class="number">1</span>][<span class="number">1</span>]=a;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">case</span> <span class="string">'R'</span>:</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%lf"</span>,&amp;a);</span><br><span class="line">				a*=pi/<span class="number">180.0</span>;</span><br><span class="line">				k.a[<span class="number">0</span>][<span class="number">0</span>]=<span class="built_in">cos</span>(a);</span><br><span class="line">				k.a[<span class="number">0</span>][<span class="number">1</span>]=-<span class="built_in">sin</span>(a);</span><br><span class="line">				k.a[<span class="number">1</span>][<span class="number">0</span>]=<span class="built_in">sin</span>(a);</span><br><span class="line">				k.a[<span class="number">1</span>][<span class="number">1</span>]=<span class="built_in">cos</span>(a);</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">default</span>:</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		ans=multi(k,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">double</span> x1=x[i]*ans.a[<span class="number">0</span>][<span class="number">0</span>]+y[i]*ans.a[<span class="number">0</span>][<span class="number">1</span>]+ans.a[<span class="number">0</span>][<span class="number">2</span>];</span><br><span class="line">		<span class="keyword">double</span> y1=x[i]*ans.a[<span class="number">1</span>][<span class="number">0</span>]+y[i]*ans.a[<span class="number">1</span>][<span class="number">1</span>]+ans.a[<span class="number">1</span>][<span class="number">2</span>];</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%.1lf %.1lf\n"</span>,x1,y1);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/matrix/">matrix</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/10/02/matrix2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          hdu 1575
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/08/29/uva 712/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">uva 712&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/10/02/matrix1/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

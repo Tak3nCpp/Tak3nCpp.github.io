@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://tak3ncpp.github.io/2015/08/23/rqnoj 675/index.html">
 <meta property="og:site_name" content="Tak3n's Blog">
 <meta property="og:description" content="给一串正整数，玩家每次可以从右边取一个数或者从左边取一个数，分数为取得整数的和，每次策略最优。问先手最多多少分，后手最多多少分。">
-<meta property="og:updated_time" content="2015-08-31T07:49:11.380Z">
+<meta property="og:updated_time" content="2015-09-01T10:33:21.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rqnoj 675">
 <meta name="twitter:description" content="给一串正整数，玩家每次可以从右边取一个数或者从左边取一个数，分数为取得整数的和，每次策略最优。问先手最多多少分，后手最多多少分。">
@@ -88,6 +88,7 @@
         <p>给一串正整数，玩家每次可以从右边取一个数或者从左边取一个数，分数为取得整数的和，每次策略最优。问先手最多多少分，后手最多多少分。<a id="more"></a> </p>
 <p>博弈水题，主要是记忆化搜索。 </p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span>//自行脑补头文件</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> w[<span class="number">110</span>][<span class="number">110</span>];</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">110</span>];</span><br><span class="line"><span class="keyword">int</span> sum[<span class="number">110</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getw</span><span class="params">(<span class="keyword">int</span> st,<span class="keyword">int</span> ed)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(st==ed)<span class="keyword">return</span> w[st][ed]=a[st];</span><br><span class="line">    <span class="keyword">if</span>(w[st][ed]!=-<span class="number">1</span>)<span class="keyword">return</span> w[st][ed];</span><br><span class="line">    <span class="keyword">int</span> a=getw(st+<span class="number">1</span>,ed),b=getw(st,ed-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> w[st][ed]=sum[ed]-sum[st-<span class="number">1</span>]-min(a,b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    mem(w,-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    sum[<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,a+i);</span><br><span class="line">        sum[i]=sum[i-<span class="number">1</span>]+a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> res1=getw(<span class="number">1</span>,n),res2=sum[n]-res1;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,res1,res2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
 
       
     </div>
@@ -103,10 +104,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2015/08/25/poj 2663 3420/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/08/27/poj 3723/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-title"><span>&lt;</span>&nbsp;
         
-          poj 2663/3420
+          poj 3723
         
       </div>
     </a>
