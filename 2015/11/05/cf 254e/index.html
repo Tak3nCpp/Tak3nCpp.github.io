@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>codeforces 254D - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一个同学生活n天，每天必吃v公斤食物。这n天他爸妈每天给他a[i]公斤食物，每天给的食物只能当天和第二天吃。他有m个同学，每个同学在他寝室从第li天住到ri天，食量为fi。他的RP值的增长规则为喂一个人一天的饭，涨1,当天不能重复喂。所有数据小于400，问他RP最多是多少，该怎么喂他的同学。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codeforces 254D">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/11/05/cf 254e/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="一个同学生活n天，每天必吃v公斤食物。这n天他爸妈每天给他a[i]公斤食物，每天给的食物只能当天和第二天吃。他有m个同学，每个同学在他寝室从第li天住到ri天，食量为fi。他的RP值的增长规则为喂一个人一天的饭，涨1,当天不能重复喂。所有数据小于400，问他RP最多是多少，该怎么喂他的同学。">
+<meta property="og:updated_time" content="2015-11-05T04:39:50.326Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="codeforces 254D">
+<meta name="twitter:description" content="一个同学生活n天，每天必吃v公斤食物。这n天他爸妈每天给他a[i]公斤食物，每天给的食物只能当天和第二天吃。他有m个同学，每个同学在他寝室从第li天住到ri天，食量为fi。他的RP值的增长规则为喂一个人一天的饭，涨1,当天不能重复喂。所有数据小于400，问他RP最多是多少，该怎么喂他的同学。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-cf 254e" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      codeforces 254D
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/11/05/cf 254e/" class="article-date">
+  <time datetime="2015-11-05T02:30:35.000Z" itemprop="datePublished">2015-11-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/11/05/cf 254e/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>一个同学生活n天，每天必吃v公斤食物。这n天他爸妈每天给他a[i]公斤食物，每天给的食物只能当天和第二天吃。他有m个同学，每个同学在他寝室从第li天住到ri天，食量为fi。他的RP值的增长规则为喂一个人一天的饭，涨1,当天不能重复喂。所有数据小于400，问他RP最多是多少，该怎么喂他的同学。<a id="more"></a>  </p>
+<p>考虑每个状态涉及的变量和表示的数值，dp[i][j]表示第i天，昨天的剩饭为j，的RP值。<br>用已知量更新未知量。</p>
+<p>那么代码及分析如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> pii pair&lt;int,int&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> piii pair&lt;int ,pii&gt;</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf <span class="number">0x3f3f3f3f</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">403</span>;</span><br><span class="line"><span class="keyword">int</span> dp[N][N],pre[N][N],num[N][N];<span class="comment">///pre，昨天剩了多少饭，num,每天供应的食客数。</span></span><br><span class="line"><span class="keyword">int</span> n,v,m;</span><br><span class="line"><span class="keyword">int</span> a[N];</span><br><span class="line"><span class="built_in">vector</span>&lt;pii&gt; em[N];<span class="comment">///每天的食客数。</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> rest)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(n&lt;=<span class="number">1</span>)<span class="keyword">return</span>;</span><br><span class="line">	print(n-<span class="number">1</span>,pre[n][rest]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,num[n][rest]);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;num[n][rest];i++)</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">" %d"</span>,em[n-<span class="number">1</span>][i].second);</span><br><span class="line">	<span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"input.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"output.txt"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;v);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=m;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> l,r,eat;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;l,&amp;r,&amp;eat);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=l;j&lt;=r;j++)</span><br><span class="line">			em[j].push_back(pii(eat,i));</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">		sort(em[i].begin(),em[i].end());<span class="comment">///每天先满足食量小的人的需求</span></span><br><span class="line">	<span class="built_in">memset</span>(dp,-<span class="number">1</span>,<span class="keyword">sizeof</span>(dp));</span><br><span class="line">	dp[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n+<span class="number">1</span>;i++)</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;N;j++)</span><br><span class="line">			<span class="keyword">if</span>(dp[i][j]!=-<span class="number">1</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> fr=j,now=a[i];</span><br><span class="line">			<span class="keyword">if</span>(fr+now&lt;v)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(fr&gt;=v)<span class="comment">///如果昨天剩余量大于自己的食量，那么就吃掉</span></span><br><span class="line">				fr-=v;</span><br><span class="line">			<span class="keyword">else</span><span class="comment">///否则，吃掉今天的一部分来满足自己的食量</span></span><br><span class="line">				now-=v-fr,fr=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">if</span>(dp[i][j]&gt;dp[i+<span class="number">1</span>][now])<span class="comment">///更新明天的RP值和路径</span></span><br><span class="line">			&#123;</span><br><span class="line">				dp[i+<span class="number">1</span>][now]=dp[i][j];</span><br><span class="line">				pre[i+<span class="number">1</span>][now]=j;</span><br><span class="line">				num[i+<span class="number">1</span>][now]=<span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;em[i].size();k++)<span class="comment">///搜索每一天的食客的饭量</span></span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">int</span> t=em[i][k].first;</span><br><span class="line">				<span class="keyword">if</span>(fr+now&lt;t)<span class="keyword">break</span>;</span><br><span class="line">				<span class="keyword">if</span>(fr&gt;=t)</span><br><span class="line">					fr-=t;</span><br><span class="line">				<span class="keyword">else</span></span><br><span class="line">				&#123;</span><br><span class="line">					now-=t-fr;</span><br><span class="line">					fr=<span class="number">0</span>;</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(dp[i][j]+k+<span class="number">1</span>&gt;dp[i+<span class="number">1</span>][now])</span><br><span class="line">				&#123;</span><br><span class="line">					dp[i+<span class="number">1</span>][now]=dp[i][j]+k+<span class="number">1</span>;</span><br><span class="line">					pre[i+<span class="number">1</span>][now]=j;</span><br><span class="line">					num[i+<span class="number">1</span>][now]=k+<span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	<span class="keyword">int</span> ansj=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)</span><br><span class="line">		<span class="keyword">if</span>(dp[n+<span class="number">1</span>][i]&gt;dp[n+<span class="number">1</span>][ansj])</span><br><span class="line">			ansj=i;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,dp[n+<span class="number">1</span>][ansj]);</span><br><span class="line">	print(n+<span class="number">1</span>,ansj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP，贪心/">DP，贪心</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/05/cf 254d/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">codeforces 254D&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/11/05/cf 254e/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

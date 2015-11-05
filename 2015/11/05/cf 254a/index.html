@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>codeforces 254A - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="给2n个数，问能不能组成n对数，使每对数中的两个数值相同。n小于300000，a[i]小于5000。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codeforces 254A">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/11/05/cf 254a/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="给2n个数，问能不能组成n对数，使每对数中的两个数值相同。n小于300000，a[i]小于5000。">
+<meta property="og:updated_time" content="2015-11-05T03:04:05.248Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="codeforces 254A">
+<meta name="twitter:description" content="给2n个数，问能不能组成n对数，使每对数中的两个数值相同。n小于300000，a[i]小于5000。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-cf 254a" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      codeforces 254A
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/11/05/cf 254a/" class="article-date">
+  <time datetime="2015-11-05T02:30:31.000Z" itemprop="datePublished">2015-11-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/11/05/cf 254a/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>给2n个数，问能不能组成n对数，使每对数中的两个数值相同。n小于300000，a[i]小于5000。<a id="more"></a>水题。</p>
+<p>做法很多，可以排序，可以每输入一个数判断同样数值的数是否输入过，可以用链表储存每个数值出现过的位置。<br>给出我用链表过的程序。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(linker, <span class="string">"/STACK:10240000000,10240000000"</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf <span class="number">0x3f3f3f3f</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts(<span class="string">"-----"</span>)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> maxn <span class="number">50000</span>+<span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> uLL unsigned long long</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">int</span> next[<span class="number">600000</span>+<span class="number">6</span>];</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">5000</span>+<span class="number">3</span>];</span><br><span class="line"><span class="keyword">int</span> pre[<span class="number">5000</span>+<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"input.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"output.txt"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line">	mem(b,<span class="number">0</span>);</span><br><span class="line">	mem(pre,-<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">2</span>*n;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">		b[t]++;</span><br><span class="line">		next[i]=pre[t];</span><br><span class="line">		pre[t]=i;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">5000</span>;i++)</span><br><span class="line">			<span class="keyword">if</span>(b[i]%<span class="number">2</span>)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="built_in">puts</span>(<span class="string">"-1"</span>);</span><br><span class="line">				<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">			&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">5000</span>;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> j=pre[i],cnt=<span class="number">0</span>;~j;j=next[j],cnt++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d"</span>,j+<span class="number">1</span>);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%c"</span>,cnt%<span class="number">2</span>?<span class="string">'\n'</span>:<span class="string">' '</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/水题/">水题</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/05/cf 254b/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          codeforces 254B
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/10/07/uva 1121/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">uva 1121&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/11/05/cf 254a/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>

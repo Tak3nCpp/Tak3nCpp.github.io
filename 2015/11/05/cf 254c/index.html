@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>codeforces 254C - Tak3n&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="给出两个串，我们需要修改最少量的字符，使第一个串和第二个串的相同字母数量相同。在此基础上，需要求出字典序最小的字符串。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codeforces 254C">
+<meta property="og:url" content="http://tak3ncpp.github.io/2015/11/05/cf 254c/index.html">
+<meta property="og:site_name" content="Tak3n's Blog">
+<meta property="og:description" content="给出两个串，我们需要修改最少量的字符，使第一个串和第二个串的相同字母数量相同。在此基础上，需要求出字典序最小的字符串。">
+<meta property="og:updated_time" content="2015-11-05T03:55:21.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="codeforces 254C">
+<meta name="twitter:description" content="给出两个串，我们需要修改最少量的字符，使第一个串和第二个串的相同字母数量相同。在此基础上，需要求出字典序最小的字符串。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon"></a>
+      <a id="logo" class="logo" href="/"></a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
+          <a class="main-nav-link" href="/friends">Friends</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://tak3ncpp.github.io"></form>
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-cf 254c" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      codeforces 254C
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2015/11/05/cf 254c/" class="article-date">
+  <time datetime="2015-11-05T02:30:33.000Z" itemprop="datePublished">2015-11-05</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/ACM/">ACM</a>
+  </div>
+
+      
+        <div class="article-comment-link-wrap">
+          <a href="http://tak3ncpp.github.io/2015/11/05/cf 254c/#disqus_thread" class="article-comment-link">评论</a>
+        </div>
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>给出两个串，我们需要修改最少量的字符，使第一个串和第二个串的相同字母数量相同。在此基础上，需要求出字典序最小的字符串。<a id="more"></a>  </p>
+<p>贪心方式如下：<br>设需修改的串（第一个串）为s,被匹配的串（第二个串）为t.<br>在满足”修改最少量的字符“的前提下，使字典序最小，所以修改上去的串是固定的。<br>比如<br>CDBABC<br>ADCABD<br>那么修改上去的字母一定是A,D.而且修改上去的顺序一定是AD,不是DA.  </p>
+<p>再来看s串，它一定有一个C和B被取代。<br>位置的取舍取决于字典序的变化和该字母的”松弛“程度。<br>在这个例子里，我们找到第一个C的位置，首先因为已经预处理了C的数量，所以我们知道这个C是可松弛的，即可以取代它，也可以不取代它。在这种情况下，我们比较当前可以填进去的字母的字典序和这个可修改字符的大小，如果可以使字典序变小，那么修改，即，例子中C被取代的情况，这个时候填进去的是A。否则，修改这个字符的松弛度，如果当前字符是可修改字符，并且不可松弛，强行替代它。即例子中一个B被取代的情况，在第二个B的位置填进去D。</p>
+<p>答案即为<br>2<br>ADBADC</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;numeric&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> comment(linker, <span class="string">"/STACK:10240000000,10240000000"</span>)</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> mem(x,y) memset(x,y,sizeof(x))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> inf <span class="number">0x3f3f3f3f</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> debug puts(<span class="string">"-----"</span>)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> maxn <span class="number">50000</span>+<span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> uLL unsigned long long</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> LL long long</span></span><br><span class="line"><span class="keyword">char</span> s[<span class="number">100000</span>+<span class="number">5</span>];</span><br><span class="line"><span class="keyword">char</span> t[<span class="number">100000</span>+<span class="number">5</span>];</span><br><span class="line"><span class="keyword">int</span> sn[<span class="number">26</span>],tn[<span class="number">26</span>];</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">28</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	freopen(<span class="string">"input.txt"</span>, <span class="string">"r"</span>, <span class="built_in">stdin</span>);</span><br><span class="line">    freopen(<span class="string">"output.txt"</span>, <span class="string">"w"</span>, <span class="built_in">stdout</span>);</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s%s"</span>,s,t);</span><br><span class="line">	<span class="keyword">int</span> len=<span class="built_in">strlen</span>(s);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		sn[s[i]-<span class="string">'A'</span>]++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">		tn[t[i]-<span class="string">'A'</span>]++;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)</span><br><span class="line">		ans[i]=tn[i]&gt;sn[i]?tn[i]-sn[i]:<span class="number">0</span>;</span><br><span class="line">	ans[<span class="number">26</span>]=-<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">int</span> cnt=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> k=s[i]-<span class="string">'A'</span>;</span><br><span class="line">		<span class="keyword">if</span>(sn[k]&lt;=tn[k])<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">if</span>(!tn[k])</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(ans[j]==<span class="number">0</span>)j++;</span><br><span class="line">			<span class="keyword">if</span>(j==<span class="number">26</span>)<span class="keyword">break</span>;</span><br><span class="line">			s[i]=j+<span class="string">'A'</span>;</span><br><span class="line">			cnt++;</span><br><span class="line">			ans[j]--;</span><br><span class="line">			sn[k]--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">			<span class="keyword">while</span>(ans[j]==<span class="number">0</span>)j++;</span><br><span class="line">			<span class="keyword">if</span>(j==<span class="number">26</span>)<span class="keyword">break</span>;</span><br><span class="line">			<span class="keyword">if</span>(j&gt;k)</span><br><span class="line">				tn[k]--;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">			&#123;</span><br><span class="line">				s[i]=j+<span class="string">'A'</span>;</span><br><span class="line">				ans[j]--;</span><br><span class="line">				cnt++;</span><br><span class="line">				sn[k]--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,cnt);</span><br><span class="line">	<span class="built_in">puts</span>(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>EOF</em></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/贪心，字符串/">贪心，字符串</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/11/05/cf 254d/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          codeforces 254D
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/11/05/cf 254b/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">codeforces 254B&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 Tak3n&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, theme by <a href="http://github.com/ppoffice">PPOffice</a>
+    </div>
+  </div>
+</footer>
+    
+<script>
+  var disqus_shortname = 'tak3ncpp';
+  
+  var disqus_url = 'http://tak3ncpp.github.io/2015/11/05/cf 254c/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
