@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://tak3ncpp.github.io/"/>
-  <updated>2015-11-05T04:42:40.844Z</updated>
+  <updated>2015-11-05T04:44:40.284Z</updated>
   <id>http://tak3ncpp.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[codeforces 254D]]></title>
+    <title><![CDATA[codeforces 254E]]></title>
     <link href="http://tak3ncpp.github.io/2015/11/05/cf%20254e/"/>
     <id>http://tak3ncpp.github.io/2015/11/05/cf 254e/</id>
     <published>2015-11-05T02:30:35.000Z</published>
-    <updated>2015-11-05T04:42:40.844Z</updated>
+    <updated>2015-11-05T04:44:40.284Z</updated>
     <content type="html"><![CDATA[<p>一个同学生活n天，每天必吃v公斤食物。这n天他爸妈每天给他a[i]公斤食物，每天给的食物只能当天和第二天吃。他有m个同学，每个同学在他寝室从第li天住到ri天，食量为fi。他的RP值的增长规则为喂一个人一天的饭，涨1,当天不能重复喂。所有数据小于400，问他RP最多是多少，该怎么喂他的同学。<a id="more"></a>  </p>
 <p>考虑每个状态涉及的变量和表示的数值，dp[i][j]表示第i天，昨天的剩饭为j，的RP值。<br>用已知量更新未知量。</p>
 <p>那么代码及分析如下：</p>
